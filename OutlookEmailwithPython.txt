@@ -1,0 +1,43 @@
+import win32com.client
+
+outlook = win32com.client.Dispatch('outlook.application')
+
+# Create the email to be sent
+mail = outlook.CreateItem(0)
+
+# State the email address you wish to send the email from in the quotation marks
+mail.SendUsingAccount='_ _ _ _'
+
+# Uncomment the script below if you have more than one email address linked to your Outlook
+# mail._oleobj_.Invoke(*(64209, 0, 8, 0, accounts))
+
+# State the email address you wish to send the email to in the quotation marks
+mail.To = '_ _ _ _ '
+
+# State the Subject title
+mail.Subject = 'Sending an email using Python!'
+
+#Use the script below to attach any documents. State the file path and document name, then paste it in the quotation marks below.
+attachment =r"C:\Users\Pictures\Flower.jpg"
+mail.Attachments.Add(attachment)
+
+# In the triple quotation marks, write your email. Type "<p>" whenever you want a new paragraph. Copy and paste the HTML code of your signature. You can find through inspecting your email on a web browser, and then copying the HTML code from 
+mail.HTMLBody ="""
+    <p>
+    Hello Me!
+    <p> 
+    I sent this email using a Python script! \U0001F642
+    <p> 
+    <div id="Signature"><div><p style="margin:0cm;font-size:11pt;font-family:Calibri, sans-serif"><a><i><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;mso-fareast-language:EN-GB;mso-no-proof:yes">Kind regards,<o:p>&nbsp;</o:p></span></i></a></p><p style="margin:0cm;font-size:11pt;font-family:Calibri, sans-serif"><span style="mso-bookmark:_MailAutoSig"><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;mso-fareast-language:EN-GB;mso-no-proof:yes"><o:p>&nbsp;</o:p></span></span></p><p style="margin:0cm;font-size:11pt;font-family:Calibri, sans-serif"><span style="mso-bookmark:_MailAutoSig"><span style="font-family:&quot;Rockwell&quot;,serif;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;mso-fareast-language:EN-GB;mso-no-proof:yes">Aishwaree Mahadea</span></span><span style="mso-bookmark:_MailAutoSig"><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;mso-fareast-language:EN-GB;mso-no-proof:yes"> | </span></span><span style="mso-bookmark:_MailAutoSig"><span style="font-family:&quot;Rockwell&quot;,serif;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;mso-fareast-language:EN-GB;mso-no-proof:yes">Aspiring Data Analyst</span></span><span style="mso-bookmark:_MailAutoSig"><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;mso-fareast-language:EN-GB;mso-no-proof:yes"><o:p>&nbsp;</o:p></span></span></p><p style="margin:0cm;font-size:11pt;font-family:Calibri, sans-serif"><span style="mso-bookmark:_MailAutoSig"><b><span style="font-family:&quot;Rockwell&quot;,serif;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;color:#538135;mso-themecolor:accent6;mso-themeshade:191;mso-fareast-language:EN-GB;mso-no-proof:yes">Mobile</span></b></span><span style="mso-bookmark:_MailAutoSig"><span style="font-family:&quot;Rockwell&quot;,serif;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:minor-fareast;mso-fareast-language:EN-GB;mso-no-proof:yes">: 07-xxxx-xxxx<o:p>&nbsp;</o:p></span></span></p></div></div>
+"""
+
+# see your prepared email
+# mail.Display()
+
+# Send your email
+# mail.Send()
+
+#- - - - - - - - - Helpful Notes - - - - - - - -
+# To see the available mail accounts (just to see, not to send) then uncomment the next two lines.
+# for accounts in outlook.Session.Accounts:
+#    print('Available email accounts: %s'%(accounts))
